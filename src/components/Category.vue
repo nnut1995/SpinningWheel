@@ -9,7 +9,7 @@
         <el-form-item label="Category" :label-width="formLabelWidth">
           <el-select v-model="form.Postcategory" placeholder="Choose category">
             <el-option label="Fashion" value="Fashion"></el-option>
-            <el-option label="Wearable" value="Wearable"></el-option>
+            <el-option label="Wearables" value="Wearables"></el-option>
             <el-option label="Games" value="Games"></el-option>
             <el-option label="Sport" value="Sport"></el-option>
             <el-option label="Collectibles" value="Collectibles"></el-option>
@@ -62,7 +62,18 @@ export default {
       router.push({ name: 'main.Spinning' })
     },
     createSpin () {
-      product.createSpin(this.form.Postname, this.form.Postcategory, _response => {
+      var categoryDict = {}
+      categoryDict['Fashion'] = 1
+      categoryDict['Wearables'] = 2
+      categoryDict['Games'] = 3
+      categoryDict['Sport'] = 4
+      categoryDict['Collectibles'] = 5
+      categoryDict['Home'] = 6
+      categoryDict['Books'] = 7
+      categoryDict['Beauty'] = 8
+      console.log('this.form.Postcategory: ' + this.form.Postcategory)
+      console.log('categoryDict: ' + categoryDict)
+      product.createSpin(this.form.Postname, this.form.Postcategory, categoryDict[this.form.Postcategory], _response => {
         this.dialogFormVisible = false
         location.reload()
       })

@@ -50,6 +50,7 @@ export default {
         }]
       }
     }
+    console.log(spinParams)
     var config = {
       headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt')}
     }
