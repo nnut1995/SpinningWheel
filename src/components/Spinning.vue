@@ -20,7 +20,6 @@
     </el-dialog>
     <el-row>
       <el-col :span="8" v-for="item in items">
-        <div v-if="item.spin_id === currentSpin">
           <el-card :body-style="{ padding: '0px' }">
             <img :src="item.photo" class="image" height="300">
             <div style="padding: 14px;">
@@ -29,7 +28,6 @@
               <span> {{ item.spin_id }}</span>
             </div>
           </el-card>
-        </div>
       </el-col>
     </el-row>
   </div>
@@ -69,8 +67,8 @@ export default {
     product.getItems(_response => {
       this.items = _response
       console.log(this.items)
-      console.log(localStorage.getItem('category'))
-      // this.items = this.items.filter(product.catFilter)
+      console.log(localStorage.getItem('currentSpin'))
+      this.items = this.items.filter(product.spinFilter)
       console.log(this.items)
     })
   }
