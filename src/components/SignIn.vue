@@ -29,7 +29,7 @@ export default {
   name: 'signin',
   data () {
     return {
-      email: 'billy@coco.com',
+      email: 'hello@world.com',
       password: '1234'
     }
   },

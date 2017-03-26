@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="category">
     <el-button type="button" @click="dialogFormVisible = true">Add spin</el-button>
-    <el-dialog title="Shipping address" v-model="dialogFormVisible">
+    <el-dialog title="Add Spin" v-model="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="Product Name" :label-width="formLabelWidth">
           <el-input v-model="form.Postname" auto-complete="off"></el-input>
@@ -18,9 +18,6 @@
             <el-option label="Beauty" value="Beauty"></el-option>
           </el-select>
         </el-form-item>
-        <!-- <el-form-item label="Image url" :label-width="formLabelWidth">
-          <el-input v-model="form.url" auto-complete="off"></el-input>
-        </el-form-item> -->
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
@@ -62,9 +59,6 @@ export default {
   },
   methods: {
     navigateTo (name) {
-      // console.log('==== navigate ====')
-      console.log('this is testttt')
-      console.log(localStorage.setItem('spin', name))
       router.push({ name: 'main.Spinning' })
     },
     createSpin () {

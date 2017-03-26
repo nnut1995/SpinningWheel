@@ -1,7 +1,10 @@
 <template lang="html">
   <div class="spinning">
-    <el-button type="button" @click="dialogFormVisible = true">Add item</el-button>
-    <el-dialog title="Shipping address" v-model="dialogFormVisible">
+    <h1>Items List</h1>
+    <div class="button-add">
+      <el-button type="button" @click="dialogFormVisible = true">Add item</el-button>
+    </div>
+    <el-dialog title="Add Item" v-model="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="Name" :label-width="formLabelWidth">
           <el-input v-model="form.Postname" auto-complete="off"></el-input>
@@ -9,9 +12,6 @@
         <el-form-item label="Description" :label-width="formLabelWidth">
           <el-input v-model="form.Postdescription" auto-complete="off"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="Image url" :label-width="formLabelWidth">
-          <el-input v-model="form.url" auto-complete="off"></el-input>
-        </el-form-item> -->
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
@@ -25,9 +25,6 @@
           <div style="padding: 14px;">
             <h3><span> {{ item.name }}</span><br></h3>
             <span> {{ item.description }}</span>
-            <div class="bottom clearfix">
-              <el-button type="text" class="button" @click="navigateTo('main.Spinning')">Choose this spin</el-button>
-            </div>
           </div>
         </el-card>
       </el-col>
@@ -45,6 +42,7 @@ export default {
       formLabelWidth: '120px',
       dialogTableVisible: false,
       dialogFormVisible: false,
+      SpinId: 0,
       form: {
         Postname: '',
         Postdescription: ''
@@ -57,10 +55,13 @@ export default {
       router.push({ name: nav })
     },
     createSpin () {
-      product.createSpin(this.form.Postname, this.form.Postdescription, _response => {
-        this.dialogFormVisible = false
-        location.reload()
-      })
+      var app = this
+      // product.createSpin(this.form.Postname, this.form.Postdescription, _response => {
+      //   this.dialogFormVisible = false
+      //   location.reload()
+      // })
+      console.log('hello')
+      console.log(app.radio)
     }
   },
   mounted () {
@@ -105,5 +106,9 @@ export default {
 
 .clearfix:after {
     clear: both
+}
+
+.button-add {
+  margin-bottom: 20px
 }
 </style>
