@@ -30,6 +30,7 @@
 <script>
 import router from '../router'
 import product from '../api/product.js'
+
 export default {
   data () {
     return {

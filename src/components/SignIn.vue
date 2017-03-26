@@ -23,6 +23,7 @@
 <script>
 import UsersApi from '../api/users.js'
 import router from '../router'
+import store from '../store'
 
 export default {
   name: 'signin',
@@ -42,6 +43,11 @@ export default {
       UsersApi.login(this.email, this.password, function (_response) {
         router.push({ name: 'main.Home' })
       })
+    }
+  },
+  mounted: function () {
+    if (store.getters.loggedIn) {
+      router.push({ name: 'main.Home' })
     }
   }
 }
