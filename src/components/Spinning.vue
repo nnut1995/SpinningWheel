@@ -20,7 +20,6 @@
     </el-dialog>
     <el-row>
       <el-col :span="8" v-for="item in items">
-        <div v-if="item.spin_id === currentSpin">
           <el-card :body-style="{ padding: '0px' }">
             <img :src="item.photo" class="image" height="300">
             <div style="padding: 14px;">
@@ -29,9 +28,12 @@
               <span> {{ item.spin_id }}</span>
             </div>
           </el-card>
-        </div>
       </el-col>
     </el-row>
+    <div class="play-box">
+      <h1>hello</h1>
+      <el-button type="primary">Start Rolling The Item</el-button>
+    </div>
   </div>
 </template>
 
@@ -110,5 +112,9 @@ export default {
 
 .button-add {
   margin-bottom: 20px
+}
+
+.play-box {
+  margin-top: 40px
 }
 </style>
