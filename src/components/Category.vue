@@ -81,7 +81,6 @@ export default {
       console.log('categoryDict: ' + categoryDict)
       product.createSpin(this.form.Postname, this.form.Postcategory, categoryDict[this.form.Postcategory], _response => {
         this.dialogFormVisible = false
-        location.reload()
       })
     }
   },
