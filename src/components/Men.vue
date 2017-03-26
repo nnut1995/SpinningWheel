@@ -66,15 +66,12 @@ export default {
     }
   },
   mounted () {
-    console.log('========')
     // app.items = product.getCategory()
     // console.log(app.items)
     // console.log('eiei')
     productsApi.getCategory(_response => {
-      console.log('1234567890')
       this.items = _response
       console.log(this.items)
-      console.log('098764321')
     })
     // console.log(product.x)
   }

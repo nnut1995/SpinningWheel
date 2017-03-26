@@ -56,17 +56,35 @@ export default {
       dialogFormVisible: false,
       form: {
         Postname: '',
-        Postcategory: ''
+        Postcategory: '',
+        CategoryId: 0
       }
     }
   },
   methods: {
     navigateTo (nav) {
-      console.log('==== navigate ====')
       router.push({ name: nav })
     },
     createSpin () {
-      product.createSpin(this.form.Postname, this.form.Postcategory, _response => {
+      var app = this
+      if (app.form.Postcategory === 'Fashion') {
+        app.form.CategoryId = 1
+      } else if (app.form.Postcategory === 'Wearable') {
+        app.form.CategoryId = 2
+      } else if (app.form.Postcategory === 'Games') {
+        app.form.CategoryId = 3
+      } else if (app.form.Postcategory === 'Sport') {
+        app.form.CategoryId = 4
+      } else if (app.form.Postcategory === 'Collectibles') {
+        app.form.CategoryId = 5
+      } else if (app.form.Postcategory === 'Home') {
+        app.form.CategoryId = 6
+      } else if (app.form.Postcategory === 'Books') {
+        app.form.CategoryId = 7
+      } else if (app.form.Postcategory === 'Beauty') {
+        app.form.CategoryId = 8
+      }
+      product.createSpin(this.form.Postname, this.form.Postcategory, this.form.CategoryId, _response => {
         this.dialogFormVisible = false
         location.reload()
       })
@@ -75,8 +93,6 @@ export default {
   mounted () {
     console.log('========')
     product.getSpin(_response => {
-      this.items = _response
-      console.log(this.items)
       console.log(localStorage.getItem('category'))
       this.items = this.items.filter(product.catFilter)
       console.log(this.items)
