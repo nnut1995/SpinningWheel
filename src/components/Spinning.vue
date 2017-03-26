@@ -25,14 +25,13 @@
             <div style="padding: 14px;">
               <h3><span> {{ item.name }}</span><br></h3>
               <span> {{ item.description }}</span><br>
-              <span> {{ item.spin_id }}</span>
+              <span> {{ items.length }}</span>
             </div>
           </el-card>
       </el-col>
     </el-row>
     <div class="play-box">
-      <h1>hello</h1>
-      <el-button type="primary">Start Rolling The Item</el-button>
+      <el-button type="primary" @click="randomItem">Start Rolling The Item</el-button>
     </div>
   </div>
 </template>
@@ -64,16 +63,23 @@ export default {
       product.createItem(app.form.Postname, app.form.Postdescription, localStorage.getItem('currentSpin'), _response => {
         this.dialogFormVisible = false
       })
+    },
+    randomItem () {
+      var app = this
+      console.log('==== random ====')
+      var item = app.items[Math.floor(Math.random() * app.items.length)]
+      console.log(item.name)
     }
   },
   mounted () {
-    console.log('========')
     product.getItems(_response => {
       this.items = _response
-      console.log(this.items)
-      console.log(localStorage.getItem('currentSpin'))
+      // console.log(this.items)
+      // console.log(localStorage.getItem('currentSpin'))
       this.items = this.items.filter(product.spinFilter)
-      console.log(this.items)
+      console.log(this.items.length)
+      // console.log(this.items[0])
+      // console.log(this.items)
     })
   }
 }
