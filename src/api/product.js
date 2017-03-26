@@ -48,6 +48,11 @@ export default {
     .catch(function (response) {
       console.log('CatchSpin')
     })
+  },
+  catFilter (value) {
+    console.log('value.tag: ' + value.tag)
+    console.log('local: ' + localStorage.getItem('category'))
+    console.log(value.tag === localStorage.getItem('category'))
+    return value.tag === localStorage.getItem('category')
   }
-
 }

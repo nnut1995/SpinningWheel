@@ -93,10 +93,10 @@ export default {
   mounted () {
     console.log('========')
     product.getSpin(_response => {
-      this.items = _response
+      console.log(localStorage.getItem('category'))
+      this.items = this.items.filter(product.catFilter)
       console.log(this.items)
     })
-    // console.log(product.x)
   }
 }
 </script>
