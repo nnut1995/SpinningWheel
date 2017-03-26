@@ -24,7 +24,7 @@
           <img :src="item.photo" class="image" height="300">
           <div style="padding: 14px;">
             <h3><span> {{ item.name }}</span><br></h3>
-            <span> {{ item.tag }}</span>
+            <span> {{ item.description }}</span>
             <div class="bottom clearfix">
               <el-button type="text" class="button" @click="navigateTo('main.Spinning')">Choose this spin</el-button>
             </div>
@@ -65,11 +65,11 @@ export default {
   },
   mounted () {
     console.log('========')
-    product.getSpin(_response => {
+    product.getItems(_response => {
       this.items = _response
       console.log(this.items)
       console.log(localStorage.getItem('category'))
-      this.items = this.items.filter(product.catFilter)
+      // this.items = this.items.filter(product.catFilter)
       console.log(this.items)
     })
   }

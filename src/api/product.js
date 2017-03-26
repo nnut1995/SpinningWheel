@@ -27,6 +27,19 @@ export default {
       console.log('catchGetSpin')
     })
   },
+  getItems (callback) {
+    var config = {
+      headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt')}
+    }
+    Vue.$http.get('items', config)
+    .then(function (response) {
+      callback(response.data)
+      return response.dataconsole.log('1234567890')
+    })
+    .catch(function (response) {
+      console.log('catchGetSpin')
+    })
+  },
   createSpin (name, tag, categoryId, callback) {
     var spinParams = {
       spin: {
