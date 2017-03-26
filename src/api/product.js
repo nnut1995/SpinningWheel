@@ -27,13 +27,13 @@ export default {
       console.log('catchGetSpin')
     })
   },
-  createSpin (name, tag, callback) {
+  createSpin (name, tag, categoryId, callback) {
     var spinParams = {
       spin: {
         name: name,
         tag: tag,
         category: [{
-          id: category_id
+          id: categoryId
         }]
       }
     }
@@ -48,6 +48,11 @@ export default {
     .catch(function (response) {
       console.log('CatchSpin')
     })
+  },
+  catFilter (value) {
+    console.log('value.tag: ' + value.tag)
+    console.log('local: ' + localStorage.getItem('category'))
+    console.log(value.tag === localStorage.getItem('category'))
+    return value.tag === localStorage.getItem('category')
   }
-
 }

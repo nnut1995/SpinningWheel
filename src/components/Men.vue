@@ -62,7 +62,7 @@ export default {
     navigateTo (nav, title) {
       console.log('==== navigate ====')
       router.push({ name: nav })
-      localStorage.setItem('category', title) 
+      localStorage.setItem('category', title)
     }
   },
   mounted () {
