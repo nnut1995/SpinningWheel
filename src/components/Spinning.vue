@@ -71,8 +71,8 @@ export default {
     product.getItems(_response => {
       this.items = _response
       console.log(this.items)
-      console.log(localStorage.getItem('category'))
-      // this.items = this.items.filter(product.catFilter)
+      console.log(localStorage.getItem('currentSpin'))
+      this.items = this.items.filter(product.spinFilter)
       console.log(this.items)
     })
   }

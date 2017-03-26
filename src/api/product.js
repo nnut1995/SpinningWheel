@@ -86,9 +86,12 @@ export default {
     })
   },
   catFilter (value) {
-    // console.log('value.tag: ' + value.tag)
-    // console.log('local: ' + localStorage.getItem('category'))
-    // console.log(value.tag === localStorage.getItem('category'))
     return value.tag === localStorage.getItem('category')
+  },
+  spinFilter (value) {
+    console.log('localStorage.getItem("currentSpin"): ' + localStorage.getItem('currentSpin'))
+    console.log('value.spin_id: ' + value.spin_id)
+    console.log(Number(value.spin_id) === Number(localStorage.getItem('currentSpin')))
+    return Number(value.spin_id) === Number(localStorage.getItem('currentSpin'))
   }
 }
