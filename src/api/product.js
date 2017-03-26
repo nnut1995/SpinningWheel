@@ -63,6 +63,28 @@ export default {
       console.log('CatchSpin')
     })
   },
+  createItem (name, description, spinId, callback) {
+    var itemParams = {
+      item: {
+        name: name,
+        description: description,
+        spin: [{
+          id: spinId
+        }]
+      }
+    }
+    var config = {
+      headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt')}
+    }
+    Vue.$http.post('items', itemParams, config)
+    .then(function (response) {
+      console.log(response.data)
+      callback(response.data)
+    })
+    .catch(function (response) {
+      console.log('CatchSpin')
+    })
+  },
   catFilter (value) {
     // console.log('value.tag: ' + value.tag)
     // console.log('local: ' + localStorage.getItem('category'))

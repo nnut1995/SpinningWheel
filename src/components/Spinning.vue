@@ -15,18 +15,21 @@
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="createSpin()">Confirm</el-button>
+        <el-button type="primary" @click="createItem()">Confirm</el-button>
       </span>
     </el-dialog>
     <el-row>
       <el-col :span="8" v-for="item in items">
-        <el-card :body-style="{ padding: '0px' }">
-          <img :src="item.photo" class="image" height="300">
-          <div style="padding: 14px;">
-            <h3><span> {{ item.name }}</span><br></h3>
-            <span> {{ item.description }}</span>
-          </div>
-        </el-card>
+        <div v-if="item.spin_id === currentSpin">
+          <el-card :body-style="{ padding: '0px' }">
+            <img :src="item.photo" class="image" height="300">
+            <div style="padding: 14px;">
+              <h3><span> {{ item.name }}</span><br></h3>
+              <span> {{ item.description }}</span><br>
+              <span> {{ item.spin_id }}</span>
+            </div>
+          </el-card>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -42,7 +45,7 @@ export default {
       formLabelWidth: '120px',
       dialogTableVisible: false,
       dialogFormVisible: false,
-      SpinId: 0,
+      currentSpin: localStorage.getItem('currentSpin'),
       form: {
         Postname: '',
         Postdescription: ''
@@ -54,14 +57,11 @@ export default {
       console.log('==== navigate ====')
       router.push({ name: nav })
     },
-    createSpin () {
+    createItem () {
       var app = this
-      // product.createSpin(this.form.Postname, this.form.Postdescription, _response => {
-      //   this.dialogFormVisible = false
-      //   location.reload()
-      // })
-      console.log('hello')
-      console.log(app.radio)
+      product.createItem(app.form.Postname, app.form.Postdescription, localStorage.getItem('currentSpin'), _response => {
+        this.dialogFormVisible = false
+      })
     }
   },
   mounted () {

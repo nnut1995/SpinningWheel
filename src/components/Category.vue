@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="category">
-    <el-button type="button" @click="dialogFormVisible = true">Add spin</el-button>
+    <h1>Choose a Wheel</h1>
+    <div class="button-add">
+      <el-button type="button" @click="dialogFormVisible = true">Add spin</el-button>
+    </div>
     <el-dialog title="Add Spin" v-model="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="Product Name" :label-width="formLabelWidth">
@@ -32,7 +35,7 @@
             <h3><span> {{ item.name }}</span><br></h3>
             <span> {{ item.tag }}</span>
             <div class="bottom clearfix">
-              <el-button type="text" class="button" @click="navigateTo(item.name)">Choose this spin</el-button>
+              <el-button type="text" class="button" @click="navigateTo(item.id)">Choose this spin</el-button>
             </div>
           </div>
         </el-card>
@@ -58,7 +61,8 @@ export default {
     }
   },
   methods: {
-    navigateTo (name) {
+    navigateTo (id) {
+      localStorage.setItem('currentSpin', id)
       router.push({ name: 'main.Spinning' })
     },
     createSpin () {
@@ -121,5 +125,9 @@ export default {
 
 .clearfix:after {
     clear: both
+}
+
+.button-add {
+  margin-bottom: 20px
 }
 </style>
