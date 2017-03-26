@@ -9,7 +9,7 @@
         <el-form-item label="Category" :label-width="formLabelWidth">
           <el-select v-model="form.Postcategory" placeholder="Choose category">
             <el-option label="Fashion" value="Fashion"></el-option>
-            <el-option label="Wearable" value="Wearable"></el-option>
+            <el-option label="Wearables" value="Wearables"></el-option>
             <el-option label="Games" value="Games"></el-option>
             <el-option label="Sport" value="Sport"></el-option>
             <el-option label="Collectibles" value="Collectibles"></el-option>
