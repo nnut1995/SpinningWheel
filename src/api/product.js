@@ -27,18 +27,20 @@ export default {
       console.log('catchGetSpin')
     })
   },
-  createSpin (name, tag, callback) {
-    var loginParams = {
+  createSpin (name, tag, categoryId, callback) {
+    var spinParams = {
       spin: {
         name: name,
-        tag: tag
+        tag: tag,
+        category: [{
+          id: categoryId
+        }]
       }
     }
     var config = {
       headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt')}
     }
-    console.log(loginParams, config)
-    Vue.$http.post('spins', loginParams)
+    Vue.$http.post('spins', spinParams, config)
     .then(function (response) {
       callback(response.data)
       console.log(response.data)
