@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="category">
-    <el-button type="button" @click="dialogFormVisible = true">Add the product</el-button>
+    <el-button type="button" @click="dialogFormVisible = true">Add spin</el-button>
     <el-dialog title="Shipping address" v-model="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="Product Name" :label-width="formLabelWidth">
@@ -35,7 +35,7 @@
             <h3><span> {{ item.name }}</span><br></h3>
             <span> {{ item.tag }}</span>
             <div class="bottom clearfix">
-              <el-button type="text" class="button" @click="navigateTo('main.Spinning')">See the products</el-button>
+              <el-button type="text" class="button" @click="navigateTo(item.name)">Choose this spin</el-button>
             </div>
           </div>
         </el-card>
@@ -56,35 +56,19 @@ export default {
       dialogFormVisible: false,
       form: {
         Postname: '',
-        Postcategory: '',
-        CategoryId: 0
+        Postcategory: ''
       }
     }
   },
   methods: {
-    navigateTo (nav) {
-      router.push({ name: nav })
+    navigateTo (name) {
+      // console.log('==== navigate ====')
+      console.log('this is testttt')
+      console.log(localStorage.setItem('spin', name))
+      router.push({ name: 'main.Spinning' })
     },
     createSpin () {
-      var app = this
-      if (app.form.Postcategory === 'Fashion') {
-        app.form.CategoryId = 1
-      } else if (app.form.Postcategory === 'Wearable') {
-        app.form.CategoryId = 2
-      } else if (app.form.Postcategory === 'Games') {
-        app.form.CategoryId = 3
-      } else if (app.form.Postcategory === 'Sport') {
-        app.form.CategoryId = 4
-      } else if (app.form.Postcategory === 'Collectibles') {
-        app.form.CategoryId = 5
-      } else if (app.form.Postcategory === 'Home') {
-        app.form.CategoryId = 6
-      } else if (app.form.Postcategory === 'Books') {
-        app.form.CategoryId = 7
-      } else if (app.form.Postcategory === 'Beauty') {
-        app.form.CategoryId = 8
-      }
-      product.createSpin(this.form.Postname, this.form.Postcategory, this.form.CategoryId, _response => {
+      product.createSpin(this.form.Postname, this.form.Postcategory, _response => {
         this.dialogFormVisible = false
         location.reload()
       })
@@ -93,6 +77,8 @@ export default {
   mounted () {
     console.log('========')
     product.getSpin(_response => {
+      this.items = _response
+      console.log(this.items)
       console.log(localStorage.getItem('category'))
       this.items = this.items.filter(product.catFilter)
       console.log(this.items)
