@@ -49,7 +49,7 @@
 
 <script>
 import router from '../router'
-import product from '../api/product.js'
+import productsApi from '../api/product.js'
 
 export default {
   data () {
@@ -69,7 +69,7 @@ export default {
     // app.items = product.getCategory()
     // console.log(app.items)
     // console.log('eiei')
-    product.getCategory(_response => {
+    productsApi.getCategory(_response => {
       console.log('1234567890')
       this.items = _response
       console.log(this.items)

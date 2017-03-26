@@ -2,7 +2,10 @@ import Vue from 'vue'
 
 export default {
   getCategory (callback) {
-    Vue.$http.get('categories')
+    var config = {
+      headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt')}
+    }
+    Vue.$http.get('categories', config)
     .then(function (response) {
       callback(response.data)
       return response.dataconsole.log('1234567890')
@@ -12,7 +15,10 @@ export default {
     })
   },
   getSpin (callback) {
-    Vue.$http.get('spins')
+    var config = {
+      headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt')}
+    }
+    Vue.$http.get('spins', config)
     .then(function (response) {
       callback(response.data)
       return response.dataconsole.log('1234567890')
@@ -28,7 +34,10 @@ export default {
         tag: tag
       }
     }
-    console.log(loginParams)
+    var config = {
+      headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt')}
+    }
+    console.log(loginParams, config)
     Vue.$http.post('spins', loginParams)
     .then(function (response) {
       callback(response.data)

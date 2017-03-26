@@ -29,8 +29,8 @@ export default {
   name: 'signin',
   data () {
     return {
-      email: '',
-      password: ''
+      email: 'billy@coco.com',
+      password: '1234'
     }
   },
   methods: {
