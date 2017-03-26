@@ -7,7 +7,7 @@
           <div style="padding: 14px;">
             <span> {{ item.title }}</span>
             <div class="bottom clearfix">
-              <el-button type="text" class="button" @click="navigateTo('main.Category')">See the category</el-button>
+              <el-button type="text" class="button" @click="navigateTo('main.Category', item.title)">See the category</el-button>
             </div>
           </div>
         </el-card>
@@ -59,9 +59,10 @@ export default {
     }
   },
   methods: {
-    navigateTo (nav) {
+    navigateTo (nav, title) {
       console.log('==== navigate ====')
       router.push({ name: nav })
+      localStorage.setItem('category', title) 
     }
   },
   mounted () {
