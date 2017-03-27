@@ -1,52 +1,55 @@
 <template lang="html">
   <div class="spinning">
-    <el-button type="button" @click="dialogFormVisible = true">Add the product</el-button>
-    <el-dialog title="Shipping address" v-model="dialogFormVisible">
+    <h1>Items List</h1>
+    <div class="button-add">
+      <el-button type="button" @click="dialogFormVisible = true">Add item</el-button>
+    </div>
+    <el-dialog title="Add Item" v-model="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="Product Name" :label-width="formLabelWidth">
+        <el-form-item label="Name" :label-width="formLabelWidth">
           <el-input v-model="form.Postname" auto-complete="off"></el-input>
         </el-form-item>
-        <el-form-item label="Category" :label-width="formLabelWidth">
-          <el-select v-model="form.Postcategory" placeholder="Choose category">
-            <el-option label="Fashion" value="Fashion"></el-option>
-            <el-option label="Wearable" value="Wearable"></el-option>
-            <el-option label="Games" value="Games"></el-option>
-            <el-option label="Sport" value="Sport"></el-option>
-            <el-option label="Collectibles" value="Collectibles"></el-option>
-            <el-option label="Home" value="Home"></el-option>
-            <el-option label="Books" value="Books"></el-option>
-            <el-option label="Beauty" value="Beauty"></el-option>
-          </el-select>
+        <el-form-item label="Description" :label-width="formLabelWidth">
+          <el-input v-model="form.Postdescription" auto-complete="off"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="Image url" :label-width="formLabelWidth">
-          <el-input v-model="form.url" auto-complete="off"></el-input>
-        </el-form-item> -->
       </el-form>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="createSpin()">Confirm</el-button>
+        <el-button type="primary" @click="createItem()">Confirm</el-button>
       </span>
     </el-dialog>
     <el-row>
       <el-col :span="8" v-for="item in items">
-        <el-card :body-style="{ padding: '0px' }">
-          <img :src="item.photo" class="image" height="300">
-          <div style="padding: 14px;">
-            <h3><span> {{ item.name }}</span><br></h3>
-            <span> {{ item.tag }}</span>
-            <div class="bottom clearfix">
-              <el-button type="text" class="button" @click="navigateTo('main.Spinning')">See the products</el-button>
+          <el-card :body-style="{ padding: '0px' }">
+            <img src="../assets/holder.png" class="image" height="250">
+            <div style="padding: 14px;">
+              <h3><span> {{ item.name }}</span><br></h3>
+              <span> {{ item.description }}</span><br>
             </div>
-          </div>
-        </el-card>
+          </el-card>
       </el-col>
     </el-row>
+    <div class="play-box">
+      <el-button type="primary" @click="randomItem">Start Rolling The Item</el-button>
+    </div>
+    <el-dialog title="Congratulation!" v-model="dialogVisible" size="large">
+      <span>You get a {{ result.name }}</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import router from '../router'
 import product from '../api/product.js'
+<<<<<<< HEAD
+=======
+import gamesApi from '../api/game.js'
+import user from '../api/users.js'
+
+>>>>>>> cbba32ce460bdfbc075d81dce8c7421d4cccecfb
 export default {
   data () {
     return {
@@ -54,9 +57,18 @@ export default {
       formLabelWidth: '120px',
       dialogTableVisible: false,
       dialogFormVisible: false,
+<<<<<<< HEAD
       form: {
         Postname: '',
         Postcategory: ''
+=======
+      dialogVisible: false,
+      currentSpin: localStorage.getItem('currentSpin'),
+      result: '',
+      form: {
+        Postname: '',
+        Postdescription: ''
+>>>>>>> cbba32ce460bdfbc075d81dce8c7421d4cccecfb
       }
     }
   },
@@ -65,6 +77,7 @@ export default {
       console.log('==== navigate ====')
       router.push({ name: nav })
     },
+<<<<<<< HEAD
     createSpin () {
       product.createSpin(this.form.Postname, this.form.Postcategory, _response => {
         this.dialogFormVisible = false
@@ -81,6 +94,40 @@ export default {
       console.log('098764321')
     })
     // console.log(product.x)
+=======
+    createItem () {
+      var app = this
+      product.createItem(app.form.Postname, app.form.Postdescription, localStorage.getItem('currentSpin'), _response => {
+        this.dialogFormVisible = false
+      })
+    },
+    randomItem () {
+      var app = this
+      console.log('==== random ====')
+      app.result = app.items[Math.floor(Math.random() * app.items.length)]
+      gamesApi.sendResult(app.result, _response => {
+        var eiei = _response
+        console.log(eiei)
+      })
+      app.dialogVisible = true
+    }
+
+  },
+  mounted () {
+    product.getItems(_response => {
+      this.items = _response
+      // console.log(this.items)
+      // console.log(localStorage.getItem('currentSpin'))
+      this.items = this.items.filter(product.spinFilter)
+      console.log(this.items.length)
+      // console.log(this.items[0])
+      // console.log(this.items)
+      user.checkCurrentUser(_response => {
+        var check = _response
+        console.log(check)
+      })
+    })
+>>>>>>> cbba32ce460bdfbc075d81dce8c7421d4cccecfb
   }
 }
 </script>
@@ -115,4 +162,15 @@ export default {
 .clearfix:after {
     clear: both
 }
+<<<<<<< HEAD
+=======
+
+.button-add {
+  margin-bottom: 20px
+}
+
+.play-box {
+  margin-top: 40px
+}
+>>>>>>> cbba32ce460bdfbc075d81dce8c7421d4cccecfb
 </style>

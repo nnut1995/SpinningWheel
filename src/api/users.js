@@ -26,14 +26,7 @@ export default {
   },
   logout (callback) {
     console.log(store)
-    // Vue.$http.delete('/users/api_sign_out.json')
-    // .then(function (response) {
     store.dispatch('logout')
-    //   callback(response.data)
-    // })
-    // .catch(function (response) {
-    //   store.dispatch('logout')
-    // })
   },
   signUp (email, password, firstname, lastname, callback) {
     console.log(store)
@@ -53,8 +46,16 @@ export default {
       console.log('register error')
       store.dispatch('logout')
     })
+  },
+  checkCurrentUser (callback) {
+    console.log(store)
+    Vue.$http.get('users/get_current_user')
+    .then(function (response) {
+      console.log('===== check current user =====')
+      callback(response.data)
+    })
+    .catch(function (response) {
+      console.log('check current user')
+    })
   }
-  // checkSignIn (callback) {
-  //   console.log(store)
-  // }
 }

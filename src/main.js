@@ -12,7 +12,8 @@ Vue.config.productionTip = false
 
 import Axios from 'axios'
 Vue.$http = Axios
-Axios.defaults.baseURL = 'https://webapp-project-server.herokuapp.com'
+Axios.defaults.baseURL = 'https://new-project2-server.herokuapp.com'
+// Axios.defaults.baseURL = 'http://localhost:3000'
 Axios.defaults.headers.common.Accept = 'application/json'
 Axios.defaults.withCredentials = true
 

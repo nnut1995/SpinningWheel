@@ -7,6 +7,7 @@ import Men from '@/components/Men'
 import Women from '@/components/Women'
 import Category from '@/components/Category'
 import Spinning from '@/components/Spinning'
+import Profile from '@/components/Profile'
 Vue.use(Router)
 
 export default new Router({
@@ -49,6 +50,12 @@ export default new Router({
       path: '/spinning',
       name: 'main.Spinning',
       component: Spinning,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/profile',
+      name: 'main.Profile',
+      component: Profile,
       meta: { requiresAuth: true }
     }
   ]
