@@ -21,11 +21,10 @@
     <el-row>
       <el-col :span="8" v-for="item in items">
           <el-card :body-style="{ padding: '0px' }">
-            <img :src="item.photo" class="image" height="300">
+            <img src="../assets/holder.png" class="image" height="250">
             <div style="padding: 14px;">
               <h3><span> {{ item.name }}</span><br></h3>
               <span> {{ item.description }}</span><br>
-              <span> {{ items.length }}</span>
             </div>
           </el-card>
       </el-col>
@@ -33,12 +32,21 @@
     <div class="play-box">
       <el-button type="primary" @click="randomItem">Start Rolling The Item</el-button>
     </div>
+    <el-dialog title="Congratulation!" v-model="dialogVisible" size="large">
+      <span>You get a {{ result.name }}</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import router from '../router'
 import product from '../api/product.js'
+import gamesApi from '../api/game.js'
+import user from '../api/users.js'
+
 export default {
   data () {
     return {
@@ -46,7 +54,9 @@ export default {
       formLabelWidth: '120px',
       dialogTableVisible: false,
       dialogFormVisible: false,
+      dialogVisible: false,
       currentSpin: localStorage.getItem('currentSpin'),
+      result: '',
       form: {
         Postname: '',
         Postdescription: ''
@@ -67,9 +77,14 @@ export default {
     randomItem () {
       var app = this
       console.log('==== random ====')
-      var item = app.items[Math.floor(Math.random() * app.items.length)]
-      console.log(item.name)
+      app.result = app.items[Math.floor(Math.random() * app.items.length)]
+      gamesApi.sendResult(app.result, _response => {
+        var eiei = _response
+        console.log(eiei)
+      })
+      app.dialogVisible = true
     }
+
   },
   mounted () {
     product.getItems(_response => {
@@ -80,6 +95,10 @@ export default {
       console.log(this.items.length)
       // console.log(this.items[0])
       // console.log(this.items)
+      user.checkCurrentUser(_response => {
+        var check = _response
+        console.log(check)
+      })
     })
   }
 }
