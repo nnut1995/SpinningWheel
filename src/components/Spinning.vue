@@ -45,9 +45,74 @@
 </template>
 
 <script>
+import router from '../router'
+import product from '../api/product.js'
 export default {
+  data () {
+    return {
+      items: [],
+      formLabelWidth: '120px',
+      dialogTableVisible: false,
+      dialogFormVisible: false,
+      form: {
+        Postname: '',
+        Postcategory: ''
+      }
+    }
+  },
+  methods: {
+    navigateTo (nav) {
+      console.log('==== navigate ====')
+      router.push({ name: nav })
+    },
+    createSpin () {
+      product.createSpin(this.form.Postname, this.form.Postcategory, _response => {
+        this.dialogFormVisible = false
+        location.reload()
+      })
+    }
+  },
+  mounted () {
+    console.log('========')
+    product.getItems(_response => {
+      console.log('1234567890')
+      this.items = _response
+      console.log(this.items)
+      console.log('098764321')
+    })
+    // console.log(product.x)
+  }
 }
 </script>
 
 <style lang="css">
+.time {
+  font-size: 13px;
+  color: #999;
+}
+
+.bottom {
+  margin-top: 13px;
+  line-height: 12px;
+}
+
+.button {
+  padding: 0;
+  float: right;
+}
+
+.image {
+  width: 100%;
+  display: block;
+}
+
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+}
+
+.clearfix:after {
+    clear: both
+}
 </style>
