@@ -3,7 +3,7 @@
   <el-row>
     <el-col :span="12">
       <el-card :body-style="{ padding: '0px' }">
-        <img src="../assets/Men.jpg" class="image" height="700">
+        <img src="../assets/Men.jpg" class="image" height="600">
         <div style="padding: 14px;">
           <span>Male</span>
           <div class="bottom clearfix">
@@ -14,11 +14,11 @@
     </el-col>
     <el-col :span="12">
       <el-card :body-style="{ padding: '0px' }">
-        <img src="../assets/Women.jpg" class="image" height="700">
+        <img src="../assets/Women.jpg" class="image" height="600">
         <div style="padding: 14px;">
           <span>Female</span>
           <div class="bottom clearfix">
-            <el-button type="text" class="button" @click="getCategory()">Go to Women sites</el-button>
+            <el-button type="text" class="button" @click="navigateTo('main.Women')">Go to Women sites</el-button>
           </div>
         </div>
       </el-card>
