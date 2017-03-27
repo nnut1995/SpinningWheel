@@ -30,7 +30,7 @@
     <el-row>
       <el-col :span="8" v-for="item in items">
         <el-card :body-style="{ padding: '0px' }">
-          <img :src="item.photo" class="image" height="300">
+          <img src="../assets/holder.png" class="image" height="250">
           <div style="padding: 14px;">
             <h3><span> {{ item.name }}</span><br></h3>
             <span> {{ item.tag }}</span>
