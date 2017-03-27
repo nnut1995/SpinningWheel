@@ -44,9 +44,12 @@
 <script>
 import router from '../router'
 import product from '../api/product.js'
+<<<<<<< HEAD
+=======
 import gamesApi from '../api/game.js'
 import user from '../api/users.js'
 
+>>>>>>> cbba32ce460bdfbc075d81dce8c7421d4cccecfb
 export default {
   data () {
     return {
@@ -54,12 +57,18 @@ export default {
       formLabelWidth: '120px',
       dialogTableVisible: false,
       dialogFormVisible: false,
+<<<<<<< HEAD
+      form: {
+        Postname: '',
+        Postcategory: ''
+=======
       dialogVisible: false,
       currentSpin: localStorage.getItem('currentSpin'),
       result: '',
       form: {
         Postname: '',
         Postdescription: ''
+>>>>>>> cbba32ce460bdfbc075d81dce8c7421d4cccecfb
       }
     }
   },
@@ -68,6 +77,24 @@ export default {
       console.log('==== navigate ====')
       router.push({ name: nav })
     },
+<<<<<<< HEAD
+    createSpin () {
+      product.createSpin(this.form.Postname, this.form.Postcategory, _response => {
+        this.dialogFormVisible = false
+        location.reload()
+      })
+    }
+  },
+  mounted () {
+    console.log('========')
+    product.getItems(_response => {
+      console.log('1234567890')
+      this.items = _response
+      console.log(this.items)
+      console.log('098764321')
+    })
+    // console.log(product.x)
+=======
     createItem () {
       var app = this
       product.createItem(app.form.Postname, app.form.Postdescription, localStorage.getItem('currentSpin'), _response => {
@@ -100,6 +127,7 @@ export default {
         console.log(check)
       })
     })
+>>>>>>> cbba32ce460bdfbc075d81dce8c7421d4cccecfb
   }
 }
 </script>
@@ -134,6 +162,8 @@ export default {
 .clearfix:after {
     clear: both
 }
+<<<<<<< HEAD
+=======
 
 .button-add {
   margin-bottom: 20px
@@ -142,4 +172,5 @@ export default {
 .play-box {
   margin-top: 40px
 }
+>>>>>>> cbba32ce460bdfbc075d81dce8c7421d4cccecfb
 </style>
